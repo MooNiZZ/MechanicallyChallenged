@@ -13,7 +13,7 @@ Each month a new mechanic will be explained and gifs of the mechanic will be upl
 ## April 2024
 This months mechanic is... **Dropping through platforms**! 
 
-![](https://github.com/MooNiZZ/MechanicallyChallenged/JumpDownThroughPlatformDeadCells2.gif)
+![](https://raw.githubusercontent.com/MooNiZZ/MechanicallyChallenged/main/JumpDownThroughPlatformDeadCells2.gif)
 
 This is a very common mechanic in 2D Platformers, where you can stand on a platform and hold down and press jump to drop through the platform you're standing on.
 
