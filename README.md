@@ -6,6 +6,10 @@
 
 ![](https://raw.githubusercontent.com/MooNiZZ/MechanicallyChallenged/main/MechanicallyChallengedLogo.png)
 
+## tl;dr
+
+Video: [https://www.youtube.com/watch?v=ZeMQJdvAL_M](https://www.youtube.com/watch?v=ZeMQJdvAL_M&feature=youtu.be)
+
 ## What is Mechanically challenged?
 Mechanically challenged is a monthly challenge in which we and the community
 re-create different mechanics found in games! You are free to implement it in
