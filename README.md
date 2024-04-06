@@ -57,3 +57,10 @@ Eligibility Information: [LINK](Eligibility.md)
 ## Where can I watch this?
 Introduction about Mechanically challenged will be held on [TheCaptainCoder's
 Twitch](https://twitch.tv/theCaptainCoder) on Saturday April 6th at 1PM CEST
+
+## Discord / Community
+
+Join us on Discord to ask questions / chat with the community:
+
+* CaptainCoder's Discord: [LINK](https://discord.gg/Ef2TdQGKh7)
+* MooNiZZ's Discord: [LINK](https://discord.gg/nE84TGeWuU)
