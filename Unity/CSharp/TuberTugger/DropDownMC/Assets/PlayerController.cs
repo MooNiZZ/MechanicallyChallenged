@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] private float overlapRadius = 0.25f;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private float raycastDistance = 0.3f;
 
     [SerializeField] private bool isGrounded;
     private Rigidbody2D rb;
@@ -30,6 +31,8 @@ public class PlayerController : MonoBehaviour
             else
                 TryDropThrough();
         }
+
+        CheckAboveForPlatform();
     }
 
     private void FixedUpdate()
@@ -50,6 +53,15 @@ public class PlayerController : MonoBehaviour
         collider.isTrigger = true;
         yield return new WaitForSeconds(0.5f);
         collider.isTrigger = false;
+    }
+
+    private void CheckAboveForPlatform()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, 0.3f), Vector2.up, raycastDistance);
+        Debug.DrawRay(transform.position + new Vector3(0, 0.3f), Vector2.up * raycastDistance, hit.collider == null ? Color.red : Color.green);
+
+        if (hit.collider != null && hit.collider.gameObject.CompareTag("Drop") && !hit.collider.isTrigger)
+            StartCoroutine(nameof(Drop), hit.collider.gameObject.GetComponent<BoxCollider2D>());  
     }
 
 
