@@ -4,7 +4,7 @@ using UnityEngine;
 public class DropThroughPlatform : MonoBehaviour
 {
     public Collider Collider;
-    public Vector3 TriggerScale = new Vector3(1.05f, 1.05f, 1.05f);
+    public Vector3 TriggerScale = new(1.05f, 1.05f, 1.05f);
     public LayerMask DropThroughLayer;
     public List<Collider> OverlappedColliders {get; set;}
     public List<Collider> IgnoredCollders {get; set;}
@@ -12,11 +12,8 @@ public class DropThroughPlatform : MonoBehaviour
     private Collider _trigger;
     private GameObject _triggerGO;
 
-    public string DefaultLayer {get; set;}
-
     private void Start()
     {
-        DefaultLayer = LayerMask.LayerToName(gameObject.layer);
         IgnoredCollders = new List<Collider>();
         OverlappedColliders = new List<Collider>();
 
@@ -33,16 +30,6 @@ public class DropThroughPlatform : MonoBehaviour
         UpdateTrigger();
     }
 
-    #if UNITY_EDITOR
-    private void OnValidate()
-    {
-        if(Collider == default)
-        {
-            Collider = GetComponent<Collider>();
-        }
-    }
-    #endif
-
     public void StartDrop()
     {
         _isStarted = true;
@@ -50,8 +37,6 @@ public class DropThroughPlatform : MonoBehaviour
 
     public void StopDrop()
     {
-        if(!_isStarted) return;
-
         _isStarted = false;
     }
 
@@ -88,6 +73,16 @@ public class DropThroughPlatform : MonoBehaviour
             _trigger.isTrigger = true;
         }
     }
+
+    #if UNITY_EDITOR
+    private void OnValidate()
+    {
+        if(Collider == default)
+        {
+            Collider = GetComponent<Collider>();
+        }
+    }
+    #endif
 }
 
 public static class ColliderUtils

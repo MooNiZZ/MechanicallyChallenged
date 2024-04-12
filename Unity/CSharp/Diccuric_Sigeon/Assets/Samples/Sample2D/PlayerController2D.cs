@@ -2,10 +2,14 @@ using UnityEngine;
 
 public class PlayerController2D : MonoBehaviour
 {
+    private static RaycastHit2D[] CheckGroundResult = new RaycastHit2D[8];
+
     [SerializeField] private DropThroughPlatform2D _dropThroughtPlatform;
     [SerializeField] private Rigidbody2D _body;
     public float MoveSpeed;
     public float JumpForce;
+    private float _lastJumpTime = float.MinValue;
+    public float JumpColdown;
 
     public LayerMask GroundLayers;
     public float CheckGroundDistance;
@@ -14,10 +18,7 @@ public class PlayerController2D : MonoBehaviour
     public KeyCode LeftKey;
     public KeyCode RightKey;
     public KeyCode DropKey;
-    private RaycastHit2D[] CheckGroundResult = new RaycastHit2D[4];
 
-    private float _lastJumpTime = float.MinValue;
-    public float JumpColdown;
 
     private void Update()
     {
@@ -27,12 +28,13 @@ public class PlayerController2D : MonoBehaviour
     }
 
     private void Drop()
-    {
+    {   
         if(Input.GetKeyDown(DropKey))
         {
             _dropThroughtPlatform.StartDrop();
         }
-        else
+
+        if(Input.GetKeyUp(DropKey))
         {
             _dropThroughtPlatform.StopDrop();
         }
@@ -58,7 +60,6 @@ public class PlayerController2D : MonoBehaviour
 
     private void Jump()
     {
-
         if(Input.GetKey(JumpKey) && IsReadyForJump())
         {
 		    _body.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
