@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -102,7 +99,6 @@ namespace MechanicallyChallenged.Taffaz
                 var platform = groundChecker.Ground.gameObject.GetComponentInChildren<DropthroughPlatform>();
                 if (platform != null)
                 {
-                    Debug.Log("Drop");
                     platform.StartDrop();
                     isFalling = true;
                     isJumping = false;
