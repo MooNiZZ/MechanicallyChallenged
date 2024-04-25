@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://dgt4l7hyplc7q"]
+
+[ext_resource type="PackedScene" uid="uid://b1vn6m0tord2w" path="res://player.tscn" id="1_c1tf3"]
+
+[sub_resource type="Gradient" id="Gradient_7cgsw"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_r1fys"]
+gradient = SubResource("Gradient_7cgsw")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y3ly4"]
+size = Vector2(64, 64)
+
+[sub_resource type="Gradient" id="Gradient_ijcy6"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.781933, 0.572413, 0.346315, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7xxt2"]
+gradient = SubResource("Gradient_ijcy6")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ly1ys"]
+size = Vector2(64, 64)
+
+[node name="World" type="Node"]
+
+[node name="Player" parent="." instance=ExtResource("1_c1tf3")]
+position = Vector2(237, 416)
+collision_mask = 3
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(544, 639)
+scale = Vector2(25.72, 0.48)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground"]
+texture = SubResource("GradientTexture2D_r1fys")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+shape = SubResource("RectangleShape2D_y3ly4")
+
+[node name="Drop Down Platform" type="StaticBody2D" parent="." groups=["Drop-Down"]]
+position = Vector2(790, 510)
+scale = Vector2(6.72, 0.319998)
+collision_layer = 2
+collision_mask = 0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Drop Down Platform"]
+texture = SubResource("GradientTexture2D_7xxt2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Drop Down Platform"]
+shape = SubResource("RectangleShape2D_ly1ys")
+one_way_collision = true
+
+[node name="Drop Down Platform2" type="StaticBody2D" parent="." groups=["Drop-Down"]]
+position = Vector2(789, 410)
+scale = Vector2(6.72, 0.319998)
+collision_layer = 2
+collision_mask = 0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Drop Down Platform2"]
+texture = SubResource("GradientTexture2D_7xxt2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Drop Down Platform2"]
+shape = SubResource("RectangleShape2D_ly1ys")
+one_way_collision = true
