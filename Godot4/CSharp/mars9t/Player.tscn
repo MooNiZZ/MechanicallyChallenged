@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://d4k3eeo62yun3"]
+
+[ext_resource type="Script" path="res://Player.cs" id="1_gii4a"]
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_gii4a")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
