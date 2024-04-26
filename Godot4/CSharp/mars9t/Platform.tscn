@@ -1,16 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://bintao5fj5dgq"]
+[gd_scene load_steps=3 format=3 uid="uid://bintao5fj5dgq"]
+
+[ext_resource type="Script" path="res://Platform.cs" id="1_xuc43"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6avsk"]
 size = Vector2(256, 32)
 
 [node name="Platform" type="Node2D"]
+script = ExtResource("1_xuc43")
+
+[node name="StaticBody" type="StaticBody2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape" type="CollisionShape2D" parent="StaticBody"]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_6avsk")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 position = Vector2(0, 16)
 polygon = PackedVector2Array(-128, -32, 128, -32, 128, 0, -128, 0)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("RectangleShape2D_6avsk")
-one_way_collision = true

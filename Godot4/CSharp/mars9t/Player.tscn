@@ -6,6 +6,8 @@
 size = Vector2(64, 64)
 
 [node name="Player" type="CharacterBody2D"]
+modulate = Color(0, 0.705882, 1, 1)
+collision_mask = 3
 script = ExtResource("1_gii4a")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]

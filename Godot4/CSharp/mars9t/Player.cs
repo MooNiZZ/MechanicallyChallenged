@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class Player : CharacterBody2D
 {
@@ -7,12 +6,28 @@ public partial class Player : CharacterBody2D
 
     private int _direction;
     private bool _wantsToJump;
+    private Timer _getDownTimer;
 
     [Export]
     public float Speed { get; set; } = 300.0f;
 
     [Export]
-    public float JumpSpeed { get; set; } = 400.0f;
+    public float JumpSpeed { get; set; } = 600.0f;
+
+    [Export]
+    public double DropTimerThresholdSeconds { get; set; } = 0.25;
+
+    public override void _Ready()
+    {
+        base._Ready();
+
+        _getDownTimer = new Timer();
+        _getDownTimer.WaitTime = DropTimerThresholdSeconds;
+        _getDownTimer.OneShot = true;
+        _getDownTimer.Autostart = false;
+        _getDownTimer.Timeout += OnGetDownTimerTimeout;
+        AddChild(_getDownTimer);
+    }
 
     public override void _Input(InputEvent inputEvent)
     {
@@ -23,6 +38,17 @@ public partial class Player : CharacterBody2D
             if (Input.IsActionJustPressed("jump"))
             {
                 _wantsToJump = true;
+            }
+
+            if (Input.IsActionJustPressed("drop_down"))
+            {
+                _getDownTimer.Start();
+            }
+
+            if (Input.IsActionJustReleased("drop_down"))
+            {
+                _getDownTimer.Stop();
+                SetCollisionMaskValue(2, true);
             }
 
             if (Input.IsActionJustReleased("move_left"))
@@ -87,5 +113,10 @@ public partial class Player : CharacterBody2D
         Velocity = velocity;
 
         MoveAndSlide();
+    }
+
+    private void OnGetDownTimerTimeout()
+    {
+        SetCollisionMaskValue(2, false);
     }
 }
