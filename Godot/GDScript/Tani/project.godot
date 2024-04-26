@@ -16,6 +16,10 @@ run/main_scene="res://world.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 
+[editor]
+
+movie_writer/movie_file="C:/Users/tanis/OneDrive/Desktop/GameDev/Godot3D/MechanicallyChallenged/Godot/GDScript/Tani/game.png"
+
 [input]
 
 move_left={
