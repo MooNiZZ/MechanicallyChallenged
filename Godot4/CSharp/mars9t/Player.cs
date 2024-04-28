@@ -4,9 +4,11 @@ public partial class Player : CharacterBody2D
 {
     private static float Gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 
-    private int _direction;
+    private Timer _dropDownTimer;
+    private int _moveDirection;
+    private bool _onPassablePlatform;
+    private RayCast2D _passablePlatformDetectionRaycast;
     private bool _wantsToJump;
-    private Timer _getDownTimer;
 
     [Export]
     public float Speed { get; set; } = 300.0f;
@@ -21,68 +23,69 @@ public partial class Player : CharacterBody2D
     {
         base._Ready();
 
-        _getDownTimer = new Timer();
-        _getDownTimer.WaitTime = DropTimerThresholdSeconds;
-        _getDownTimer.OneShot = true;
-        _getDownTimer.Autostart = false;
-        _getDownTimer.Timeout += OnGetDownTimerTimeout;
-        AddChild(_getDownTimer);
+        _dropDownTimer = new Timer();
+        _dropDownTimer.WaitTime = DropTimerThresholdSeconds;
+        _dropDownTimer.OneShot = true;
+        _dropDownTimer.Autostart = false;
+        _dropDownTimer.Timeout += OnGetDownTimerTimeout;
+        AddChild(_dropDownTimer);
+
+        _passablePlatformDetectionRaycast = GetNode<RayCast2D>("%PassablePlatformRayCast");
+        _passablePlatformDetectionRaycast.SetCollisionMaskValue(Consts.PASSABLE_PLATFORM_COLLISION_LAYER, true);
+
+        SetCollisionMaskValue(Consts.PASSABLE_PLATFORM_COLLISION_LAYER, true);
     }
 
-    public override void _Input(InputEvent inputEvent)
+    public override void _UnhandledKeyInput(InputEvent inputEvent)
     {
-        base._Input(inputEvent);
+        base._UnhandledKeyInput(inputEvent);
 
-        if (inputEvent is InputEventKey keyEvent)
+        if (Input.IsActionJustPressed("jump"))
         {
-            if (Input.IsActionJustPressed("jump"))
-            {
                 _wantsToJump = true;
-            }
+        }
 
-            if (Input.IsActionJustPressed("drop_down"))
+        if (Input.IsActionJustPressed("drop_down"))
+        {
+                _dropDownTimer.Start();
+        }
+        else if (Input.IsActionJustReleased("drop_down"))
+        {
+            _dropDownTimer.Stop();
+            SetCollisionMaskValue(Consts.PASSABLE_PLATFORM_COLLISION_LAYER, true);
+        }
+
+        if (Input.IsActionJustReleased("move_left"))
+        {
+            if (Input.IsActionPressed("move_right"))
             {
-                _getDownTimer.Start();
+                _moveDirection = 1;
             }
-
-            if (Input.IsActionJustReleased("drop_down"))
+            else
             {
-                _getDownTimer.Stop();
-                SetCollisionMaskValue(2, true);
+                _moveDirection = 0;
             }
+        }
 
-            if (Input.IsActionJustReleased("move_left"))
-            {
-                if (Input.IsActionPressed("move_right"))
-                {
-                    _direction = 1;
-                }
-                else
-                {
-                    _direction = 0;
-                }
-            }
-
-            if (Input.IsActionJustReleased("move_right"))
-            {
-                if (Input.IsActionPressed("move_left"))
-                {
-                    _direction = -1;
-                }
-                else
-                {
-                    _direction = 0;
-                }
-            }
-
+        if (Input.IsActionJustReleased("move_right"))
+        {
             if (Input.IsActionPressed("move_left"))
             {
-                _direction = -1;
+                _moveDirection = -1;
             }
-            else if (Input.IsActionPressed("move_right"))
+            else
             {
-                _direction = 1;
+                _moveDirection = 0;
             }
+        }
+
+        if (Input.IsActionPressed("move_left"))
+        {
+            _moveDirection = -1;
+        }
+        else if (Input.IsActionPressed("move_right"))
+        {
+            _moveDirection = 1;
         }
     }
 
@@ -92,9 +95,9 @@ public partial class Player : CharacterBody2D
 
         Vector2 velocity = Velocity;
 
-        if (_direction != 0)
+        if (_moveDirection != 0)
         {
-            velocity.X += (float)(_direction * Speed);
+            velocity.X += (float)(_moveDirection * Speed);
             velocity.X = Mathf.Clamp(velocity.X, -Speed, Speed);
         }
         else
@@ -113,10 +116,27 @@ public partial class Player : CharacterBody2D
         Velocity = velocity;
 
         MoveAndSlide();
+
+        if (_passablePlatformDetectionRaycast.IsColliding())
+        {
+            _onPassablePlatform = true;
+        }
+        else
+        {
+            if (_onPassablePlatform == true)
+            {
+                SetCollisionMaskValue(Consts.PASSABLE_PLATFORM_COLLISION_LAYER, true);
+            }
+
+            _onPassablePlatform = false;
+        }
     }
 
     private void OnGetDownTimerTimeout()
     {
-        SetCollisionMaskValue(2, false);
+        if (_onPassablePlatform)
+        {
+            SetCollisionMaskValue(Consts.PASSABLE_PLATFORM_COLLISION_LAYER, false);
+        }
     }
 }
