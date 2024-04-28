@@ -25,9 +25,9 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	# Handle drop-down platforms
-	if Input.is_action_pressed("move_down"):
+	if (Input.is_action_pressed("move_down") and Input.is_action_pressed("jump")):
 		set_collision_mask_value(2, false)
-	else:
+	elif (Input.is_action_just_released("move_down")):
 		set_collision_mask_value(2, true)
 
 	move_and_slide()

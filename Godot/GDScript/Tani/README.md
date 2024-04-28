@@ -116,6 +116,18 @@ else:
 
 Now when we press the `"move_down"` action, the player will no longer collide with the drop-down platforms as long as the key is held down, making this convenient for the player as well.
 
+Below is another set of inputs that can be used for jumping down a platform:
+
+```gdscript
+# Handle drop-down platforms
+if (Input.is_action_pressed("move_down") and Input.is_action_pressed("jump")):
+	set_collision_mask_value(2, false)
+elif (Input.is_action_just_released("move_down")):
+	set_collision_mask_value(2, true)
+```
+
+We will go with the first set of inputs for now.
+
 Below is the final player script:
 
 ```gdscript
