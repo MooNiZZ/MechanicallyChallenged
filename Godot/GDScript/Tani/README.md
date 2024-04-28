@@ -114,7 +114,7 @@ else:
 	set_collision_mask_value(2, true)
 ```
 
-Now when we press the `"move_down"` action, the player will no longer collide with the drop-down platforms as long as the key is held down, making this conveneient for the player as well.
+Now when we press the `"move_down"` action, the player will no longer collide with the drop-down platforms as long as the key is held down, making this convenient for the player as well.
 
 Below is the final player script:
 
