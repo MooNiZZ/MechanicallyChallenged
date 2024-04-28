@@ -84,7 +84,7 @@ With this, we can observe the player being able to pass through the platforms wh
 
 ### Step 2: Implementing Falling Down
 
-###### Step 2.1: Collision Layers
+#### Step 2.1: Collision Layers
 
 This mechanic can be implemented in many different ways, but the most graceful approach would be to utilise Godot's Collision Layers and Masks.
 
@@ -100,7 +100,7 @@ Now on our drop-down platform, let us update the `Collision` property in the Ins
 
 This setup makes it such that the collisions between the player and the drop-down platforms only occur in the 2nd layer.
 
-###### Step 2.2: The Logic
+#### Step 2.2: The Logic
 
 As the collisions only happen in the 2nd layer, to disable collisions between the player and the drop-down platforms, we can simply just disable the player's collision mask for that layer, making this approach very convenient and easy to implement.
 
