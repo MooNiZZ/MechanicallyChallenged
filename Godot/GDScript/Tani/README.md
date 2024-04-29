@@ -200,4 +200,4 @@ Happy coding!
 
 ## License
 
-This project is licensed under the MIT License - see the License file in the root directory of the repository for details.
+This project is licensed under the MIT License - see the [License](LICENSE.md) file for more details.
