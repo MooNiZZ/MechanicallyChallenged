@@ -7,6 +7,7 @@ size = Vector2(64, 64)
 
 [node name="Player" type="CharacterBody2D"]
 modulate = Color(0, 0.705882, 1, 1)
+collision_mask = 0
 script = ExtResource("1_gii4a")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
@@ -19,5 +20,3 @@ shape = SubResource("RectangleShape2D_sk15e")
 unique_name_in_owner = true
 position = Vector2(0, 32)
 target_position = Vector2(0, 5)
-collision_mask = 0
-hit_from_inside = true
