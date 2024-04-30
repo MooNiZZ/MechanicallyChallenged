@@ -110,6 +110,17 @@ public partial class Player : CharacterBody2D
         }
     }
 
+    /// <summary>
+    /// Called when the timer for drop down detection fires
+    /// </summary>
+    private void DropDown_OnTimerTimeout()
+    {
+        if (_onPassablePlatform)
+        {
+            SetCollisionMaskValue(Consts.PASSABLE_PLATFORM_COLLISION_LAYER, false);
+        }
+    }
+
     #endregion
 
     #region Common Methods
@@ -191,17 +202,6 @@ public partial class Player : CharacterBody2D
         Velocity = velocity;
 
         MoveAndSlide();
-    }
-
-    /// <summary>
-    /// Called when the timer for drop down detection fires
-    /// </summary>
-    private void DropDown_OnTimerTimeout()
-    {
-        if (_onPassablePlatform)
-        {
-            SetCollisionMaskValue(Consts.PASSABLE_PLATFORM_COLLISION_LAYER, false);
-        }
     }
 
     #endregion

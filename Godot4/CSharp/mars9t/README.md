@@ -104,7 +104,8 @@ The core setup for a Player:
 
 ```
 
-The rest lies in other parts of code. Give them a look :)
+The rest lies in other parts of code. Ones relevant to Drop Down are placed in methods starting with `DropDown_`. Others, starting with `Common_`, contain common boilerplate code for character input and movement.
+Give them a look :)
 
 ## On my way out...
 
