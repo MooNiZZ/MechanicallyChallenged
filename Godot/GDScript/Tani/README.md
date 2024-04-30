@@ -172,7 +172,7 @@ We can now observe the player falling through the platforms when pressing the `"
 
 ### Step 3: Reusability
 
-Now that we've got the functionality implemented, we can make extract our drop-down platforms into a reusable scene. 
+Now that we've got the functionality implemented, we can extract our drop-down platforms into a reusable scene. 
 
 To achieve this, right click on the platform in the scene tree and click `Save Branch as Scene`. 
 
@@ -200,4 +200,4 @@ Happy coding!
 
 ## License
 
-This project is licensed under the MIT License - see the License file in the root directory of the repository for details.
+This project is licensed under the MIT License - see the [License](LICENSE.md) file for more details.
