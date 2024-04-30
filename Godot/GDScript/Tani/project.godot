@@ -12,9 +12,8 @@ config_version=5
 
 config/name="DropDownPlatforms"
 config/tags=PackedStringArray("challenge")
-run/main_scene="res://world.tscn"
+run/main_scene="res://scenes/world.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
-config/icon="res://icon.svg"
 
 [editor]
 
