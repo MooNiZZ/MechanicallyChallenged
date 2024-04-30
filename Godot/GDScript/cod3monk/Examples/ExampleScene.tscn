@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1j2esgic8ktn"]
+
+[ext_resource type="Script" path="res://Examples/player.gd" id="1_los34"]
+[ext_resource type="PackedScene" uid="uid://vddqp086b5om" path="res://Platform.tscn" id="2_hq1ki"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_afdr0"]
+radius = 30.0
+height = 100.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_upf35"]
+size = Vector2(640, 84)
+
+[node name="Main" type="Node2D"]
+
+[node name="Info" type="RichTextLabel" parent="."]
+offset_left = 320.0
+offset_top = 100.0
+offset_right = 600.0
+offset_bottom = 280.0
+text = "Controls:
+	- W A S D or Up, Left, Down, Right
+	- 'Space' to Jump
+
+
+Hold 'Down' and 'Jump' to drop through the platforms."
+
+[node name="Player" type="CharacterBody2D" parent="."]
+z_index = 1
+position = Vector2(64, 311)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_los34")
+metadata/_edit_group_ = true
+
+[node name="Polygon2D" type="Polygon2D" parent="Player"]
+color = Color(1, 0.639216, 0, 1)
+polygon = PackedVector2Array(-30, -20, -29, -28, -26, -35, -21, -41, -15, -46, -8, -49, 0, -50, 8, -49, 15, -46, 21, -41, 26, -35, 29, -28, 30, -20, 30, 20, 29, 28, 26, 35, 21, 41, 15, 46, 8, 49, 0, 50, -8, 49, -15, 46, -21, 41, -26, 35, -29, 28, -30, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CapsuleShape2D_afdr0")
+
+[node name="Level" type="Node" parent="."]
+
+[node name="Floor" type="StaticBody2D" parent="Level"]
+position = Vector2(320, 378)
+scale = Vector2(5, 1)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Floor"]
+shape = SubResource("RectangleShape2D_upf35")
+
+[node name="Polygon2D" type="Polygon2D" parent="Level/Floor"]
+color = Color(0, 0.529412, 0.317647, 1)
+polygon = PackedVector2Array(-320, -42, -320, 42, 320, 42, 320, -42)
+
+[node name="Platform" parent="Level" instance=ExtResource("2_hq1ki")]
+position = Vector2(200, 250)
+
+[node name="Platform2" parent="Level" instance=ExtResource("2_hq1ki")]
+position = Vector2(200, 150)
+
+[node name="Platform3" parent="Level" instance=ExtResource("2_hq1ki")]
+position = Vector2(200, 50)
