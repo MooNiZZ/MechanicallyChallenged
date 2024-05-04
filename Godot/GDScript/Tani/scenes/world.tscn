@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgt4l7hyplc7q"]
+
+[ext_resource type="PackedScene" uid="uid://b1vn6m0tord2w" path="res://scenes/player.tscn" id="1_c1tf3"]
+[ext_resource type="PackedScene" uid="uid://cypdxmi7c55i4" path="res://scenes/drop_down_platform.tscn" id="1_k7vpa"]
+
+[sub_resource type="Gradient" id="Gradient_7cgsw"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_r1fys"]
+gradient = SubResource("Gradient_7cgsw")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y3ly4"]
+size = Vector2(64, 64)
+
+[node name="World" type="Node"]
+
+[node name="Drop-Down Platform" parent="." instance=ExtResource("1_k7vpa")]
+position = Vector2(569, 527)
+
+[node name="Drop-Down Platform3" parent="." instance=ExtResource("1_k7vpa")]
+position = Vector2(568, 434)
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(544, 639)
+scale = Vector2(25.72, 0.48)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground"]
+texture = SubResource("GradientTexture2D_r1fys")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+shape = SubResource("RectangleShape2D_y3ly4")
+
+[node name="Player" parent="." instance=ExtResource("1_c1tf3")]
+position = Vector2(91, 427)
+collision_mask = 3
