@@ -1,0 +1,236 @@
+[gd_scene load_steps=6 format=3 uid="uid://dki5b535qa616"]
+
+[ext_resource type="Script" path="res://PlatformDropThrough/boxy_boi.gd" id="1_fimuu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o8pkw"]
+size = Vector2(40, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n30qu"]
+size = Vector2(1154, 35)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xp2uy"]
+size = Vector2(100, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_35yu5"]
+size = Vector2(270, 22)
+
+[node name="GenericLevel" type="Node2D"]
+
+[node name="BoxyBoi" type="CharacterBody2D" parent="."]
+position = Vector2(555, 445)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_fimuu")
+
+[node name="ColorRect" type="ColorRect" parent="BoxyBoi"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoxyBoi"]
+shape = SubResource("RectangleShape2D_o8pkw")
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(577, 586)
+
+[node name="ColorRect" type="ColorRect" parent="Ground"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -579.0
+offset_top = -20.0
+offset_right = 582.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.498039, 1, 0.560784, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+shape = SubResource("RectangleShape2D_n30qu")
+
+[node name="PassablePlatform-Type1-1" type="StaticBody2D" parent="."]
+position = Vector2(179, 425)
+collision_layer = 2
+collision_mask = 2
+
+[node name="ColorRect" type="ColorRect" parent="PassablePlatform-Type1-1"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -10.0
+offset_right = 49.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.858824, 0.192157, 0.878431, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PassablePlatform-Type1-1"]
+shape = SubResource("RectangleShape2D_xp2uy")
+one_way_collision = true
+
+[node name="PassablePlatform-Type1-2" type="StaticBody2D" parent="."]
+position = Vector2(179, 260)
+collision_layer = 2
+collision_mask = 2
+
+[node name="ColorRect" type="ColorRect" parent="PassablePlatform-Type1-2"]
+auto_translate_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -10.0
+offset_right = 49.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.858824, 0.192157, 0.878431, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PassablePlatform-Type1-2"]
+shape = SubResource("RectangleShape2D_xp2uy")
+one_way_collision = true
+
+[node name="PassablePlatform-Type1-3" type="StaticBody2D" parent="."]
+position = Vector2(179, 110)
+collision_layer = 2
+collision_mask = 2
+
+[node name="ColorRect" type="ColorRect" parent="PassablePlatform-Type1-3"]
+auto_translate_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -10.0
+offset_right = 49.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.858824, 0.192157, 0.878431, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PassablePlatform-Type1-3"]
+shape = SubResource("RectangleShape2D_xp2uy")
+one_way_collision = true
+
+[node name="PassablePlatform-Type2-1" type="StaticBody2D" parent="."]
+position = Vector2(886, 431)
+
+[node name="ColorRect" type="ColorRect" parent="PassablePlatform-Type2-1"]
+auto_translate_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -10.0
+offset_right = 49.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.733538, 0.409355, 0.852066, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PassablePlatform-Type2-1"]
+shape = SubResource("RectangleShape2D_xp2uy")
+one_way_collision = true
+
+[node name="PassablePlatform-Type2-2" type="StaticBody2D" parent="."]
+position = Vector2(886, 266)
+
+[node name="ColorRect" type="ColorRect" parent="PassablePlatform-Type2-2"]
+auto_translate_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -10.0
+offset_right = 49.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.733538, 0.409355, 0.852066, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PassablePlatform-Type2-2"]
+shape = SubResource("RectangleShape2D_xp2uy")
+one_way_collision = true
+
+[node name="PassablePlatform-Type2-3" type="StaticBody2D" parent="."]
+position = Vector2(886, 110)
+
+[node name="ColorRect" type="ColorRect" parent="PassablePlatform-Type2-3"]
+auto_translate_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -10.0
+offset_right = 49.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.733538, 0.409355, 0.852066, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PassablePlatform-Type2-3"]
+shape = SubResource("RectangleShape2D_xp2uy")
+one_way_collision = true
+
+[node name="Ground2" type="StaticBody2D" parent="."]
+position = Vector2(561, 401)
+
+[node name="ColorRect" type="ColorRect" parent="Ground2"]
+auto_translate_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -135.5
+offset_top = -11.0
+offset_right = 135.5
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.498039, 1, 0.560784, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground2"]
+position = Vector2(-2, 1)
+shape = SubResource("RectangleShape2D_35yu5")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 797.0
+offset_top = 16.0
+offset_right = 962.0
+offset_bottom = 66.0
+theme_override_font_sizes/font_size = 36
+text = "Method 1"
+
+[node name="Label2" type="Label" parent="."]
+auto_translate_mode = 1
+offset_left = 102.0
+offset_top = 16.0
+offset_right = 267.0
+offset_bottom = 66.0
+theme_override_font_sizes/font_size = 36
+text = "Method 2"
