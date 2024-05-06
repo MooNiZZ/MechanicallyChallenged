@@ -12,11 +12,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float raycastDistance = 0.3f;
 
     [SerializeField] private bool isGrounded;
+
+    private BoxCollider2D boxCollider2D, 
     private Rigidbody2D rb;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        boxCollider2D = GetComponent<BoxCollider2D>();
     }
 
     void Update()
@@ -50,9 +53,9 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator Drop(Collider2D collider)
     {
-        collider.isTrigger = true;
+        Physics2D.IgnoreCollision(collider, boxCollider2D, true);
         yield return new WaitForSeconds(0.5f);
-        collider.isTrigger = false;
+        Physics2D.IgnoreCollision(collider, boxCollider2D, false);
     }
 
     private void CheckAboveForPlatform()
