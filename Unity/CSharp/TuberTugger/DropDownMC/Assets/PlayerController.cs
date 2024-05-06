@@ -53,9 +53,14 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator Drop(Collider2D collider)
     {
+        collider.TryGetComponent(out spriteRenderer renderer);
+        if(renderer != null) renderer.Color = Color.green;
+        
         Physics2D.IgnoreCollision(collider, boxCollider2D, true);
         yield return new WaitForSeconds(0.5f);
         Physics2D.IgnoreCollision(collider, boxCollider2D, false);
+        
+        if(renderer != null) renderer.Color = Color.red;
     }
 
     private void CheckAboveForPlatform()
